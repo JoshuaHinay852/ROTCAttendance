@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Login API</title>
+</head>
+<body>
+    <h2>Test Login API</h2>
+    <div id="result"></div>
+
+    <script>
+    async function testLogin() {
+        try {
+            const response = await fetch('http://192.168.1.38/rotc/api/login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: 'hinay', // Replace with actual username
+                    password: 'Hhinay123!',   // Replace with actual password
+                    user_type: 'cadet'
+                })
+            });
+            
+            const data = await response.json();
+            document.getElementById('result').innerHTML = 
+                '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        } catch (error) {
+            document.getElementById('result').innerHTML = 'Error: ' + error;
+        }
+    }
+
+    testLogin();
+    </script>
+</body>
+</html>
